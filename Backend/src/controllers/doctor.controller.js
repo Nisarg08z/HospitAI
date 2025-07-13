@@ -1,5 +1,5 @@
-import Doctor from "../models/Doctor.js";
-import Appointment from "../models/Appointment.js";
+import {Doctor} from "../models/doctor.model.js";
+import {Appointment} from "../models/appointment.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";

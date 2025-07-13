@@ -1,6 +1,6 @@
 import {Router} from "express";
 import { bookAppointment, updateAppointmentTime } from "../controllers/appointment.controller.js";
-import { verifyJWT } from "../middlewares/auth.middleware.js";
+import { verifyJWT } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 router.use(verifyJWT)

@@ -1,6 +1,6 @@
-import Appointment from "../models/Appointment.js";
-import Patient from "../models/Patient.js";
-import Doctor from "../models/Doctor.js";
+import {Appointment} from "../models/appointment.model.js";
+import {Patient} from "../models/patient.model.js";
+import {Doctor} from "../models/doctor.model.js";
 import { sendAppointmentEmail } from "../utils/mailer.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
