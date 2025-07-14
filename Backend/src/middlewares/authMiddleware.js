@@ -1,22 +1,26 @@
+import { ApiError } from "../utils/ApiError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken";
+import { Admin } from "../models/admin.model.js";
 
-export const verifyJWT = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+export const verifyJWT = asyncHandler(async (req, _, next) => {
+  const token = req.cookies?.accessToken || req.headers.authorization?.split(" ")[1];
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  if (!token) {
+    throw new ApiError(401, "Unauthorized request");
   }
-
-  const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const user = await Admin.findById(decoded._id).select("-password -refreshToken");
 
-    req.user = { id: decoded.id };
+    if (!user) {
+      throw new ApiError(401, "Invalid Access Token");
+    }
 
+    req.user = user;
     next();
   } catch (err) {
-    console.error("JWT verification failed:", err.message);
-    return res.status(403).json({ message: "Invalid or expired token" });
+    throw new ApiError(401, "Invalid or expired token");
   }
-};
+});

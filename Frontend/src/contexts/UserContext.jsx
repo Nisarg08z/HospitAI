@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
     }
 
     try {
-      const res = await axios.get("http://localhost:5000/api/auth/me", {
+      const res = await axios.get("http://localhost:5000/api/v1/admin/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
