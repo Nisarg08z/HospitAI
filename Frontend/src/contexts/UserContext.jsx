@@ -4,7 +4,7 @@ import axios from "axios";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [isLogedin, setisLogedin] = useState(false);
+  const [isLogedin, setisLogedin] = useState(true);
   const [userDetail, setuserDetail] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,6 +24,7 @@ export const UserProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("=>", res)
 
       setuserDetail(res.data.data || null);
       setisLogedin(true);
@@ -39,6 +40,8 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     checkLogin();
   }, []);
+
+  console.log("==> ",isLogedin)
 
   return (
     <UserContext.Provider

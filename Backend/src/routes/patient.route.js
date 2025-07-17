@@ -1,12 +1,12 @@
 import {Router} from "express";
-import { addPatient, getAllPatients, getPatientById } from "../controllers/patient.controller.js";
+import { addPatient, getAllPatients, getPatientByCustomId } from "../controllers/patient.controller.js";
 import { verifyJWT } from "../middlewares/authMiddleware.js";
 
 const router = Router();
 router.use(verifyJWT)
 
-router.post("/", addPatient);            
-router.get("/", getAllPatients);         
-router.get("/:id", getPatientById);      
+router.post("/addpatient", addPatient);     
+router.get("/addpatient/:id", getPatientByCustomId)
+router.get("/allpatients", getAllPatients);             
 
 export default router;

@@ -20,11 +20,13 @@ import adminRoutes from "./routes/admin.route.js";
 import patientRoutes from "./routes/patient.route.js";
 import doctorRoutes from "./routes/doctor.route.js";
 import appointmentRoutes from "./routes/appointment.route.js";
+import aiRoutes from "./routes/ai.route.js"
 
 app.use("/api/v1/admin", adminRoutes);
-app.use("/api/v1/patients", patientRoutes);
-app.use("/api/v1/doctors", doctorRoutes);
-app.use("/api/v1/appointments", appointmentRoutes);
+app.use("/api/v1/patient", patientRoutes);
+app.use("/api/v1/doctor", doctorRoutes);
+app.use("/api/v1/appointment", appointmentRoutes);
+app.use("/api/v1/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.send("🩺 HospitAI API is running");

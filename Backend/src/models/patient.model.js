@@ -29,6 +29,11 @@ const patientSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Appointment"
     },
-},{timestamps: true});
+    customID: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+}, { timestamps: true });
 
-export const Patient =  mongoose.model("Patient", patientSchema);
+export const Patient = mongoose.model("Patient", patientSchema);

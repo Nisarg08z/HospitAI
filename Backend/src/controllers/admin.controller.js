@@ -104,14 +104,15 @@ const checkPassword = asyncHandler(async (req, res) => {
 });
 
 const getCurrentAdmin = asyncHandler(async (req, res) => {
-    return res
-        .status(200)
-        .json(new ApiResponse(
+    console.log("User from token:", req.user);
+    return res.status(200).json(
+        new ApiResponse(
             200,
             req.user,
             "User fetched successfully"
-        ))
-})
+        )
+    );
+});
 
 export {
     registerAdmin,
